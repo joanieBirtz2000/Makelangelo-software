@@ -46,29 +46,29 @@ public class TranslationsMissingTest {
         Translator.start();
     }
 
-//    @Test
-//    public void findMissingTranslations() throws IOException {
-//        List<String> results = new ArrayList<>();
-//
-//        searchAllSourceFiles((e)->{
-//            String trans = Translator.get(e.key);
-//            if (trans.startsWith(Translator.MISSING)) {
-//                try {
-//                    results.add(String.format("file://%s:%s: %s", e.file.getCanonicalPath(), e.lineNumber, e.key));
-//                } catch (IOException ex) {
-//                    throw new RuntimeException(ex);
-//                }
-//            }
-//        });
-//
-//        if (results.size() != 0) {
-//            logger.info("translations missing:");
-//            for (String result: results) {
-//                logger.info("  {}", result);
-//            }
-//        }
-//        assertEquals(0, results.size(), "Some translations are missing, see previous logs for details");
-//    }
+    @Test
+    public void findMissingTranslations() throws IOException {
+        List<String> results = new ArrayList<>();
+
+        searchAllSourceFiles((e)->{
+            String trans = Translator.get(e.key);
+            if (trans.startsWith(Translator.MISSING)) {
+                try {
+                    results.add(String.format("file://%s:%s: %s", e.file.getCanonicalPath(), e.lineNumber, e.key));
+                } catch (IOException ex) {
+                    throw new RuntimeException(ex);
+                }
+            }
+        });
+
+        if (results.size() != 0) {
+            logger.info("translations missing:");
+            for (String result: results) {
+                logger.info("  {}", result);
+            }
+        }
+        assertEquals(0, results.size(), "Some translations are missing, see previous logs for details");
+    }
 
     public void searchAllSourceFiles(Consumer<TranslationFileSearcher> consumer) throws IOException {
         File srcDir = new File("src" + File.separator + "main" + File.separator + "java");
