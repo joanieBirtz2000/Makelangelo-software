@@ -58,5 +58,6 @@ public class PreferencesHelperTest {
 		Preferences machinesPreferenceNode = PreferencesHelper.getPreferenceNode(PreferencesHelper.MakelangeloPreferenceKey.MACHINES);
 		Preferences unitTestPreferenceNode = machinesPreferenceNode.node("UnitTest").node("UnitTest2");
 		assertEquals("value4", unitTestPreferenceNode.get("key4", "no"));
+		assertEquals("value4", unitTestPreferenceNode.get("key4", "no"));
 	}
 }
