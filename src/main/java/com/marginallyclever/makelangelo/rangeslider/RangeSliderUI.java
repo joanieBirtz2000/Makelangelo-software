@@ -591,5 +591,12 @@ class RangeSliderUI extends BasicSliderUI {
                 return;
             }
         }
+
+
+    }
+
+    // Ajoutez un getter pour accéder à upperThumbRect pour les test
+    protected Rectangle getUpperThumbRect() {
+        return upperThumbRect;
     }
 }
