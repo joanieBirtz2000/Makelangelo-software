@@ -44,6 +44,9 @@ module com.marginallyclever.makelangelo {
     opens com.marginallyclever.convenience.noise;
     opens com.marginallyclever.convenience.helpers;
 
+    // Add this line to allow access for tests
+    opens com.marginallyclever.makelangelo.rangeslider to org.junit.platform.commons;
+
     provides com.marginallyclever.nodegraphcore.NodeRegistry with
             com.marginallyclever.makelangelo.donatelloimpl.DonatelloRegistry;
 
