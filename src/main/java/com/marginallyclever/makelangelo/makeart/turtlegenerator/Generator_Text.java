@@ -328,6 +328,10 @@ public class Generator_Text extends TurtleGenerator {
 		//logger.debug("MAX="+chars_per_line);
 	}
 
+	public int getCharsPerLine() {
+		return charsPerLine;
+	}
+
 
 	/**
 	 * calculate the smallest rectangle that would fit around the string of text
