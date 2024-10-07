@@ -9,6 +9,7 @@ import org.junit.jupiter.api.Test;
 import javax.swing.*;
 
 import java.awt.*;
+import java.lang.reflect.Field;
 
 import static org.junit.Assert.*;
 
@@ -154,22 +155,46 @@ class RangeSliderUITest {
     
 
     @Test
-    public void testScrollByUnitPositive(){
+    public void testScrollByUnit(){
         slider = new JSlider();
         RangeSliderUI rangeSliderUI = new RangeSliderUI(new RangeSlider());
         rangeSliderUI.installUI(slider);
         int oldValue = slider.getValue();
-        rangeSliderUI.scrollByUnit(1);
+        rangeSliderUI.scrollByUnit(1);      // Direction positive
         assertEquals(oldValue + 1, slider.getValue());
+
+        oldValue = slider.getValue();
+        rangeSliderUI.scrollByUnit(-1);     // Direction négative
+        assertEquals(oldValue - 1, slider.getValue());
+    }
+
+
+    @Test
+    public void testScrollByUnitWithUpperThumbSelected() throws NoSuchFieldException, IllegalAccessException {
+        RangeSlider slider = new RangeSlider();
+        RangeSliderUI rangeSliderUI = new RangeSliderUI(new RangeSlider());
+        Field upperThumbSelectedField = rangeSliderUI.getClass().getDeclaredField("upperThumbSelected");
+        upperThumbSelectedField.setAccessible(true);
+        upperThumbSelectedField.setBoolean(rangeSliderUI, true);
+        rangeSliderUI.installUI(slider);
+        int oldValue = slider.getUpperValue();
+        rangeSliderUI.scrollByUnit(1);
+        assertEquals(oldValue + 1, slider.getUpperValue());
     }
 
     @Test
-    public void testScrollByUnitNegative(){
+    public void testScrollByBlock(){
         slider = new JSlider();
+        slider.setMinimum(0);
+        slider.setMaximum(100);
         RangeSliderUI rangeSliderUI = new RangeSliderUI(new RangeSlider());
         rangeSliderUI.installUI(slider);
         int oldValue = slider.getValue();
-        rangeSliderUI.scrollByUnit(-1);
-        assertEquals(oldValue - 1, slider.getValue());
+        rangeSliderUI.scrollByBlock(1);
+        assertEquals(oldValue + 10, slider.getValue());
+
+        oldValue = slider.getValue();
+        rangeSliderUI.scrollByBlock(-1);
+        assertEquals(oldValue - 10, slider.getValue());
     }
 }

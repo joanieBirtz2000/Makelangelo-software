@@ -2,22 +2,11 @@ package com.marginallyclever.makelangelo.makeart.turtlegenerator;
 
 import com.marginallyclever.makelangelo.Translator;
 import com.marginallyclever.makelangelo.paper.Paper;
-import com.marginallyclever.makelangelo.paper.PaperSettingsPanel;
 import com.marginallyclever.makelangelo.turtle.Turtle;
 import com.marginallyclever.util.PreferencesHelper;
-import org.assertj.swing.core.BasicRobot;
-import org.assertj.swing.core.Robot;
-import org.assertj.swing.fixture.FrameFixture;
-import org.assertj.swing.fixture.JPanelFixture;
-import org.junit.Before;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
-
-import javax.swing.*;
-
-import java.awt.*;
 import java.awt.geom.Rectangle2D;
-import java.util.Objects;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -47,11 +36,6 @@ public class Generator_TextTest {
 
 
     @Test
-    public void testGenerator_Text(){
-
-    }
-
-    @Test
     public void testSetupTransform(){
         paper = new Paper();
         generator = new Generator_Text();
@@ -62,7 +46,7 @@ public class Generator_TextTest {
         generator.setupTransform();
         double width = rect.getWidth();
         double expectedChars = (int) Math.floor((float) (width * 10.0f - 5.0f * 2.0f) / (10.0f + 5.0f));
-        assertEquals(expectedChars, generator.getCharsPerLine(),"transform");
+        assertEquals(expectedChars, generator.getCharsPerLine());
 
         width = 300;
         double height = 200;
@@ -97,5 +81,6 @@ public class Generator_TextTest {
         assertNotNull(captureTurtle);
         assertEquals(font[1], font[generator.getLastFont()]);
         assertEquals(20, generator.getLastSize());
+        assertEquals("Hello Makelangelo", generator.getLastMessage());
     }
 }
