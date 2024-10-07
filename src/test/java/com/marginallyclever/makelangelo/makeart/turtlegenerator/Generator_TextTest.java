@@ -3,6 +3,7 @@ package com.marginallyclever.makelangelo.makeart.turtlegenerator;
 import com.marginallyclever.makelangelo.Translator;
 import com.marginallyclever.makelangelo.paper.Paper;
 import com.marginallyclever.makelangelo.paper.PaperSettingsPanel;
+import com.marginallyclever.makelangelo.turtle.Turtle;
 import com.marginallyclever.util.PreferencesHelper;
 import org.assertj.swing.core.BasicRobot;
 import org.assertj.swing.core.Robot;
@@ -22,11 +23,11 @@ import static org.junit.jupiter.api.Assertions.*;
 
 
 public class Generator_TextTest {
-//    @BeforeAll
-//    public static void setup() {
-//        PreferencesHelper.start();
-//        Translator.start();
-//    }
+    @BeforeAll
+    public static void setup() {
+        PreferencesHelper.start();
+        Translator.start();
+    }
 //    // il y a 1356 font dans le tableau fontNames
 //    @Test
 //    public void generateText() {
@@ -41,17 +42,9 @@ public class Generator_TextTest {
 //
 //    }
     private Generator_Text generator;
-    private FrameFixture window;
     private Paper paper;
+    private Turtle captureTurtle;
 
-//    @Before
-//    public void setUp() {
-//        Robot robot = BasicRobot.robotWithNewAwtHierarchy();
-//
-//        PreferencesHelper.start();
-//        Translator.start();
-//
-//    }
 
     @Test
     public void testGenerator_Text(){
@@ -60,16 +53,18 @@ public class Generator_TextTest {
 
     @Test
     public void testSetupTransform(){
-        PreferencesHelper.start();
-        Translator.start();
-
         paper = new Paper();
         generator = new Generator_Text();
         paper.setPaperSize(210, 297, 0, 0);
         generator.setPaper(paper);
         Rectangle2D.Double rect = paper.getMarginRectangle();
 
-        double width = 300;
+        generator.setupTransform();
+        double width = rect.getWidth();
+        double expectedChars = (int) Math.floor((float) (width * 10.0f - 5.0f * 2.0f) / (10.0f + 5.0f));
+        assertEquals(expectedChars, generator.getCharsPerLine(),"transform");
+
+        width = 300;
         double height = 200;
         generator.setupTransform(width, height);
         width = rect.getWidth();
@@ -85,18 +80,22 @@ public class Generator_TextTest {
     }
 
     @Test
-    public void testWrapToLength(){
+   public void testGenerate(){
+        paper = new Paper();
+        generator = new Generator_Text();
+        paper.setPaperSize(216, 279, 0, 0);
+        generator.setPaper(paper);
+        generator.addListener(turtle -> captureTurtle = turtle);
 
-    }
+        generator.setFont(1);
+        generator.setSize(20);
+        generator.setMessage("Hello Makelangelo");
+        generator.generate();
 
-    @Test
-    public void testLongestLine(){
+        String[] font = generator.getFontNames();
 
-
-    }
-
-    @Test
-    public void testCalculateBounds(){
-
+        assertNotNull(captureTurtle);
+        assertEquals("SansSerif", font[generator.getLastFont()]);
+        assertEquals(20, generator.getLastSize());
     }
 }

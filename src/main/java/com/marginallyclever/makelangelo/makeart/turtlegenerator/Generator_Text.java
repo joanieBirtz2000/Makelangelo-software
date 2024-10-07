@@ -328,6 +328,7 @@ public class Generator_Text extends TurtleGenerator {
 		//logger.debug("MAX="+chars_per_line);
 	}
 
+	// Ajout de getter pour accéder à charsPerLine pour les tests
 	public int getCharsPerLine() {
 		return charsPerLine;
 	}
