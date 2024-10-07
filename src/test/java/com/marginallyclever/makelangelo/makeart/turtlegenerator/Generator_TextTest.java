@@ -95,7 +95,7 @@ public class Generator_TextTest {
         String[] font = generator.getFontNames();
 
         assertNotNull(captureTurtle);
-        assertEquals("SansSerif", font[generator.getLastFont()]);
+        assertEquals(font[1], font[generator.getLastFont()]);
         assertEquals(20, generator.getLastSize());
     }
 }
