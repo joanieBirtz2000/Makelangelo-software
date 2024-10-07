@@ -151,23 +151,25 @@ class RangeSliderUITest {
         assertEquals("Upper thumb Y position should be centered correctly.",
                 expectedUpperThumbY - (upperThumbRect.height / 2), upperThumbRect.y);
     }
+    
 
-//    @Test
-//    public void testScrollByUnitPositive(){
-//        slider = new JSlider();
-//        RangeSlider rangeSlider = new RangeSlider();
-//        slider.setMinimum(0);
-//        slider.setMaximum(100);
-//        slider.setValue(20);
-//
-//        testableRangeSliderUI = new TestableRangeSliderUI(rangeSlider);
-//        testableRangeSliderUI.installUI(slider);
-//
-//        int oldValue = ((RangeSlider) slider).getUpperValue();
-//        testableRangeSliderUI.scrollByUnit(1);
-//        assertEquals(oldValue + 1, slider.getValue());
-//
-//    }
+    @Test
+    public void testScrollByUnitPositive(){
+        slider = new JSlider();
+        RangeSliderUI rangeSliderUI = new RangeSliderUI(new RangeSlider());
+        rangeSliderUI.installUI(slider);
+        int oldValue = slider.getValue();
+        rangeSliderUI.scrollByUnit(1);
+        assertEquals(oldValue + 1, slider.getValue());
+    }
 
-
+    @Test
+    public void testScrollByUnitNegative(){
+        slider = new JSlider();
+        RangeSliderUI rangeSliderUI = new RangeSliderUI(new RangeSlider());
+        rangeSliderUI.installUI(slider);
+        int oldValue = slider.getValue();
+        rangeSliderUI.scrollByUnit(-1);
+        assertEquals(oldValue - 1, slider.getValue());
+    }
 }
