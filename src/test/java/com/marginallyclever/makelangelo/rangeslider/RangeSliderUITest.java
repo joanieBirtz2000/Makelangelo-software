@@ -153,48 +153,60 @@ class RangeSliderUITest {
                 expectedUpperThumbY - (upperThumbRect.height / 2), upperThumbRect.y);
     }
     
-
+    // Test la fonction scrollByUnit
     @Test
     public void testScrollByUnit(){
+        // Set up
         slider = new JSlider();
         RangeSliderUI rangeSliderUI = new RangeSliderUI(new RangeSlider());
         rangeSliderUI.installUI(slider);
+
+        // Test que la valeur du slider augmente de 1
         int oldValue = slider.getValue();
         rangeSliderUI.scrollByUnit(1);      // Direction positive
         assertEquals(oldValue + 1, slider.getValue());
 
+        // Test que la valeur du slider diminue de 1
         oldValue = slider.getValue();
         rangeSliderUI.scrollByUnit(-1);     // Direction négative
         assertEquals(oldValue - 1, slider.getValue());
     }
 
-
+    // Test la fonction scrollByUnit avec le upperThumbSelected == true
     @Test
     public void testScrollByUnitWithUpperThumbSelected() throws NoSuchFieldException, IllegalAccessException {
+        // Set up
         RangeSlider slider = new RangeSlider();
         RangeSliderUI rangeSliderUI = new RangeSliderUI(new RangeSlider());
         Field upperThumbSelectedField = rangeSliderUI.getClass().getDeclaredField("upperThumbSelected");
         upperThumbSelectedField.setAccessible(true);
         upperThumbSelectedField.setBoolean(rangeSliderUI, true);
         rangeSliderUI.installUI(slider);
+
+        // Test que la valeur maximale du slider augmente de 1
         int oldValue = slider.getUpperValue();
         rangeSliderUI.scrollByUnit(1);
         assertEquals(oldValue + 1, slider.getUpperValue());
     }
 
+    // Test la fonction scrollByBlock
     @Test
     public void testScrollByBlock(){
+        // Set up
         slider = new JSlider();
         slider.setMinimum(0);
         slider.setMaximum(100);
         RangeSliderUI rangeSliderUI = new RangeSliderUI(new RangeSlider());
         rangeSliderUI.installUI(slider);
+
+        // Test que la valeur du slider augmente selon les valeurs maximum et minimum du slider
         int oldValue = slider.getValue();
-        rangeSliderUI.scrollByBlock(1);
+        rangeSliderUI.scrollByBlock(1);     // Direction positive
         assertEquals(oldValue + 10, slider.getValue());
 
+        // Test que la valeur du slider diminue selon les valeurs maximum et minimum du slider
         oldValue = slider.getValue();
-        rangeSliderUI.scrollByBlock(-1);
+        rangeSliderUI.scrollByBlock(-1);    // Direction négative
         assertEquals(oldValue - 10, slider.getValue());
     }
 }

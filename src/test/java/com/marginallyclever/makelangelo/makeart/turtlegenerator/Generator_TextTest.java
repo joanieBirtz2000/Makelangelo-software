@@ -17,37 +17,28 @@ public class Generator_TextTest {
         PreferencesHelper.start();
         Translator.start();
     }
-//    // il y a 1356 font dans le tableau fontNames
-//    @Test
-//    public void generateText() {
-//        Generator_Text generator = new Generator_Text();
-//        generator.setFont(-6);
-//        assertEquals(0, generator.getLastFont());
-//        generator.setFont(1);
-//        assertEquals(1, generator.getLastFont());
-//        generator.setFont(2000);
-//        assertEquals(1355, generator.getLastFont());
-//        assertEquals("", generator.getLastMessage());
-//
-//    }
+
     private Generator_Text generator;
     private Paper paper;
     private Turtle captureTurtle;
 
-
+    // Test la fonction setupTransform()
     @Test
     public void testSetupTransform(){
+        // Set up
         paper = new Paper();
         generator = new Generator_Text();
         paper.setPaperSize(210, 297, 0, 0);
         generator.setPaper(paper);
         Rectangle2D.Double rect = paper.getMarginRectangle();
 
+        // Test la fonction sans grandeur
         generator.setupTransform();
         double width = rect.getWidth();
         double expectedChars = (int) Math.floor((float) (width * 10.0f - 5.0f * 2.0f) / (10.0f + 5.0f));
         assertEquals(expectedChars, generator.getCharsPerLine());
 
+        // Test la fonction avec width plus grand que celui du papier
         width = 300;
         double height = 200;
         generator.setupTransform(width, height);
@@ -55,6 +46,7 @@ public class Generator_TextTest {
         double expectedCharsPerLine = (int) Math.floor((float) (width * 10.0f - 5.0f * 2.0f) / (10.0f + 5.0f));
         assertEquals(expectedCharsPerLine, generator.getCharsPerLine());
 
+        // Test la fonction avec height plus grand que celui du papier
         width = 200;
         height = 300;
         generator.setupTransform(width, height);
@@ -63,8 +55,10 @@ public class Generator_TextTest {
         assertEquals(expected, generator.getCharsPerLine());
     }
 
+    // Test la fonction generate()
     @Test
    public void testGenerate(){
+        // Set up
         paper = new Paper();
         generator = new Generator_Text();
         paper.setPaperSize(216, 279, 0, 0);
@@ -74,6 +68,8 @@ public class Generator_TextTest {
         generator.setFont(1);
         generator.setSize(20);
         generator.setMessage("Hello Makelangelo");
+
+        // Test que la turtle génère le message voulu
         generator.generate();
 
         String[] font = generator.getFontNames();
