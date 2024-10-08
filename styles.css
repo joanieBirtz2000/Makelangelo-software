@@ -5,6 +5,7 @@ body {
     padding: 0;
     background-color: #f4f4f4;
 }
+
 .container {
     max-width: 900px;
     margin: 20px auto;
@@ -12,27 +13,15 @@ body {
     padding: 20px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
-h1, h2 {
+
+h1,
+h2 {
     color: #333;
 }
+
 .test {
     margin-bottom: 20px;
     padding: 10px;
     border: 1px solid #ccc;
     background-color: #fafafa;
-}
-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 10px;
-}
-table, th, td {
-    border: 1px solid #ddd;
-}
-th, td {
-    padding: 8px;
-    text-align: left;
-}
-th {
-    background-color: #f2f2f2;
 }
