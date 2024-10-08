@@ -19,8 +19,10 @@ class RangeSliderUITest {
     private JSlider slider;
 
 
+    // Test la fonction CalculateThumbLocation() without snap to ticks
     @Test
     public void testCalculateThumbLocationWithoutSnapToTicks() {
+        //Set up
         slider = new JSlider();
         slider.setMinimum(0);
         slider.setMaximum(100);
@@ -28,9 +30,11 @@ class RangeSliderUITest {
         slider.setExtent(30);
         slider.setSnapToTicks(false);
 
+        // Utilisation de la classe TestableRangeSliderUI
         testableRangeSliderUI = new TestableRangeSliderUI(new RangeSlider());
         testableRangeSliderUI.installUI(slider);
 
+        //Appel la fonction calculateThumbLocation()
         testableRangeSliderUI.calculateThumbLocation();
 
         // Vérification sans ajustement
@@ -40,8 +44,10 @@ class RangeSliderUITest {
         assertEquals(expectedUpperThumbX - (testableRangeSliderUI.getThumbSize().width / 2), upperThumbRect.x);
     }
 
+    // Test la fonction CalculateThumbLocation() with major tick spacing
     @Test
     public void testCalculateThumbLocationWithMajorTickSpacing() {
+        //Set up
         slider = new JSlider();
         slider.setMinimum(0);
         slider.setMaximum(100);
@@ -50,9 +56,11 @@ class RangeSliderUITest {
         slider.setMajorTickSpacing(10);
         slider.setSnapToTicks(true);
 
+        // Utilisation de la classe TestableRangeSliderUI
         testableRangeSliderUI = new TestableRangeSliderUI(new RangeSlider());
         testableRangeSliderUI.installUI(slider);
 
+        //Appel la fonction calculateThumbLocation()
         testableRangeSliderUI.calculateThumbLocation();
 
         // Vérification d'alignement sur le tick 60
@@ -64,8 +72,10 @@ class RangeSliderUITest {
         assertEquals(60, slider.getValue() + slider.getExtent());
         assertEquals(60 - slider.getValue(), slider.getExtent());
     }
+    // Test la fonction CalculateThumbLocation() with minor tick spacing
     @Test
     public void testCalculateThumbLocationWithMinorTickSpacing() {
+        // Set up
         slider = new JSlider();
         slider.setMinimum(0);
         slider.setMaximum(100);
@@ -75,9 +85,11 @@ class RangeSliderUITest {
         slider.setMinorTickSpacing(5);
         slider.setSnapToTicks(true);
 
+        // Utilisation de la classe TestableRangeSliderUI
         testableRangeSliderUI = new TestableRangeSliderUI(new RangeSlider());
         testableRangeSliderUI.installUI(slider);
 
+        //Appel la fonction calculateThumbLocation()
         testableRangeSliderUI.calculateThumbLocation();
 
         // Calcul des valeurs intermédiaires pour vérification
@@ -87,6 +99,7 @@ class RangeSliderUITest {
         int whichTick = Math.round(temp);
         int snappedValue = slider.getMinimum() + (whichTick * tickSpacing);
 
+        //Affiche les valeurs pour debug
         System.out.println("Upper Value: " + upperValue);
         System.out.println("Tick Spacing: " + tickSpacing);
         System.out.println("Snapped Value: " + snappedValue);
@@ -99,9 +112,10 @@ class RangeSliderUITest {
         assertEquals(snappedValue, slider.getValue() + slider.getExtent());
     }
 
-
+    // Test la fonction CalculateThumbLocation() with zero tick spacing
     @Test
     public void testCalculateThumbLocationWithZeroTickSpacing() {
+        //Set up
         slider = new JSlider();
         slider.setMinimum(0);
         slider.setMaximum(100);
@@ -109,9 +123,11 @@ class RangeSliderUITest {
         slider.setExtent(30);
         slider.setSnapToTicks(true); // snapToTicks activé mais pas de major/minor tick spacing
 
+        // Utilisation de la classe TestableRangeSliderUI
         testableRangeSliderUI = new TestableRangeSliderUI(new RangeSlider());
         testableRangeSliderUI.installUI(slider);
 
+        //Appel la fonction calculateThumbLocation()
         testableRangeSliderUI.calculateThumbLocation();
 
         // Vérifier qu'aucun ajustement n'a été fait
@@ -122,9 +138,10 @@ class RangeSliderUITest {
         assertEquals(50, slider.getValue() + slider.getExtent()); // Pas de modification de la valeur
     }
 
+    // Test la fonction CalculateThumbLocation() for vertical slider
     @Test
     public void testCalculateThumbLocationForVerticalSlider() {
-        // Configuration du slider vertical
+        //Set up du slider vertical
         slider = new JSlider(JSlider.VERTICAL);
         slider.setMinimum(0);
         slider.setMaximum(100);
