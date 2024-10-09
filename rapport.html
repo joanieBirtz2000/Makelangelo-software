@@ -24,7 +24,7 @@
         <p><strong> Explication du choix de la methode des test 1 à 5 :</strong><br>
             Nous avons choisi de tester la classe <strong> RangeSliderUI </strong> car elle n'avait pas du tout été
             testée, alors qu'elle est importante pour l'interface utilisateur de l'application. Cette classe peint deux vignettes : 
-            une pour la valeur inférieure et une pour la valeur supérieure.
+            une pour la valeur inférieure et une pour la valeur supérieure.<br>
 
             Pour les tests 1 à 5, nous avons ciblé la fonction <strong>calculateThumbLocation()</strong>. Nous l'avons
             choisi car il s'agit d'une fonction très complexe, responsable de la mise à jour des emplacements des deux vignettes.</p>
@@ -33,26 +33,26 @@
             Nous avons choisi de tester la classe <strong> Generator_Text </strong> car elle aussi n'avait pas du tout été testée.
             Cette classe est utilisé dans l'interface utilisateur de l'application et donc il est important de la tester. La classe permet
             à l'utilisateur d'entrer le texte qu'il veut avec la taille et la police de leur choix puis de le faire afficher sur le papier 
-            par la tortue ce qui est une fonction importante de l'application. Il est donc impératif de s'assurer qu'elle fonctionne correctement.
+            par la tortue ce qui est une fonction importante de l'application. Il est donc impératif de s'assurer qu'elle fonctionne correctement.<br>
             
             Puisqu'il y avait beaucoup d'élément important à tester dans la classe <strong> RangeSliderUI </strong>, nous avons fait d'autres test
             sur des fonctions différentes dans cette classe. Les tests sont sur le slider qui monte ou descend le pouce lorsque l'utilisateur
-            appuie sur certaine touche du clavier.
+            appuie sur certaine touche du clavier.<br>
     
             Pour les test 6 et 7, nous avons ciblé la fonction <strong>testScrollByUnit()</strong>. Nous avons trouvé que cette fonction était
             importante à tester puisqu'elle permet à l'utilisateur de faire une action simple, mais importante dans l'interface. La fonction contient
-            plusieurs cas différent qui nécessite plusieurs tests.
+            plusieurs cas différent qui nécessite plusieurs tests.<br>
 
             Pour le test 8, nous avons ciblé la fonction <strong>testScrollByBlock()</strong> qui est semblable à la fonction scrollByUnit(), mais
-            qui est assez différente pour qu'il soit important de la testée aussi.
+            qui est assez différente pour qu'il soit important de la testée aussi.<br>
 
             Pour le test 9, nous avons ciblé la fonction <strong>setupTransform()</strong>. Nous avons choisi cette fonction, puiqu'il y avait plusieurs
             cas différent et qu'elle faisait appel à une autre fonction de la classe. Elle permet de trouver le nombre de caractère par ligne selon
-            les grandeurs du papier ou donner ce qui est important pour ne pas que le texte dépasse.
+            les grandeurs du papier ou donner ce qui est important pour ne pas que le texte dépasse.<br>
 
             Pour le test 10, nous avons ciblé la fonction <strong>generate()</strong>. Nous l'avons choisi puisqu'il s'agit de la fonction principale
             pour faire afficher un texte entré par l'utilisateur dans l'application. Il est donc important de s'assurer qu'elle génère correctement la
-            tortue et qu'elle applique les choix de l'utilisateur.
+            tortue et qu'elle applique les choix de l'utilisateur.<br>
         </p>    
 
         <div class="test">
@@ -63,7 +63,6 @@
             </p>
             <p><strong>But :</strong>S'assurer que la position du curseur correspond à la valeur définie, sans
                 ajustement</p>
-            <p><strong>Statut :</strong> Succès</p>
             <p><a
                     href="./src/test/java/com/marginallyclever/makelangelo/rangeslider/RangeSliderUITest.java">testCalculateThumbLocationWithoutSnapToTicks()</a>
                 ligne 24</p>
@@ -76,7 +75,6 @@
                 principaux (major ticks) lorsque SnapToTicks est activé.
             <p><strong>But :</strong>Tester que la valeur du curseur s'ajuste correctement aux ticks principaux et que
                 la position est mise à jour en conséquence.</p>
-            <p><strong>Statut :</strong> Succès</p>
             <p><a
                     href="./src/test/java/com/marginallyclever/makelangelo/rangeslider/RangeSliderUITest.java">testCalculateThumbLocationWithMajorTickSpacing()</a>
                 ligne 49</p>
@@ -89,7 +87,6 @@
                 ticks mineurs (minor ticks) lorsque SnapToTicks est activé.
             <p><strong>But :</strong>S'assurer que la valeur du curseur est ajustée aux ticks mineurs les plus proches
                 et que la position du curseur correspond à cette valeur ajustée.</p>
-            <p><strong>Statut :</strong> Succès</p>
             <p><a
                     href="./src/test/java/com/marginallyclever/makelangelo/rangeslider/RangeSliderUITest.java">testCalculateThumbLocationWithMinorTickSpacing()</a>
                 ligne 77</p>
@@ -102,7 +99,6 @@
                 minor ticks ne sont définis, aucune modification de la position du curseur ne se produit.
             <p><strong>But :</strong>S'assurer que la fonction ne modifie pas la position du curseur en l'absence de
                 tick spacing défini.</p>
-            <p><strong>Statut :</strong> Succès</p>
             <p><a
                     href="./src/test/java/com/marginallyclever/makelangelo/rangeslider/RangeSliderUITest.java">testCalculateThumbLocationWithZeroTickSpacing()</a>
                 ligne 117</p>
@@ -115,7 +111,6 @@
                 si la position du curseur est calculée correctement le long de l'axe Y.
             <p><strong>But :</strong> S'assurer que le calcul de la position du curseur fonctionne pour un slider
                 vertical et que le curseur est centré correctement sur la piste verticale.</p>
-            <p><strong>Statut :</strong> Succès</p>
             <p><a
                     href="./src/test/java/com/marginallyclever/makelangelo/rangeslider/RangeSliderUITest.java">testCalculateThumbLocationForVerticalSlider()</a>
                 ligne 143</p>
@@ -127,7 +122,6 @@
             <p><strong>Objectif : </strong> Vérifier que le slider est augmenté ou diminuer selon la direction indiquée lorsque le upperThumbSelected
                 est False.
             <p><strong>But :</strong> S'assurer que le slider va changer selon la direction indiquée et par le bon incrément.</p>
-            <p><strong>Statut :</strong> Succès</p>
             <p><a
                     href="./src/test/java/com/marginallyclever/makelangelo/rangeslider/RangeSliderUITest.java">testScrollByUnit()</a>
                 ligne 175</p>
@@ -139,7 +133,6 @@
             <p><strong>Objectif : </strong> Vérifier que la valeur supérieure du slider est augmenté ou diminuer selon la direction indiquée 
                 lorsque le upperThumbSelected est True.
             <p><strong>But :</strong> S'assurer que la valeur supérieure du slider va changer selon la direction indiquée et par le bon incrément.</p>
-            <p><strong>Statut :</strong> Succès</p>
             <p><a
                     href="./src/test/java/com/marginallyclever/makelangelo/rangeslider/RangeSliderUITest.java">testScrollByUnitWithUpperThumbSelected()</a>
                 ligne 194</p>
@@ -152,7 +145,6 @@
                 est False.
             <p><strong>But :</strong> S'assurer que le slider va changer selon la direction indiquée et par le bon incrément qui dépend des valeurs
                  minimum et maximum du slider.</p>
-            <p><strong>Statut :</strong> Succès</p>
             <p><a
                     href="./src/test/java/com/marginallyclever/makelangelo/rangeslider/RangeSliderUITest.java">testScrollByBlock()</a>
                 ligne 211</p>
@@ -164,7 +156,6 @@
             <p><strong>Objectif : </strong> Vérifier que le nombre de caractère par ligne est changer selon les grandeurs données.
             <p><strong>But :</strong> S'assurer que le calcul de caractère par ligne est fait avec les dimensions des marges calculées avec les dimensions
                 données ou les dimensions du papier.</p>
-            <p><strong>Statut :</strong> Succès</p>
             <p><a
                     href="./src/test/java/com/marginallyclever/makelangelo/makeart/turtlegenerator/Generator_TextTest.java">testSetupTransform()</a>
                 ligne 27</p>
@@ -175,7 +166,6 @@
             <p><strong>Fonction tester </strong> generate()</p>
             <p><strong>Objectif : </strong> Vérifier que la tortue est générée et qu'elle utilise les paramètres données.
             <p><strong>But :</strong> S'assurer que la fonction utilise les paramètres entrés par l'utilisateur et génère une tortue pour afficher le texte.</p>
-            <p><strong>Statut :</strong> Succès</p>
             <p><a
                     href="./src/test/java/com/marginallyclever/makelangelo/makeart/turtlegenerator/Generator_TextTest.java">testGenerate()</a>
                 ligne 60</p>
