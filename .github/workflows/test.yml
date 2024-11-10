@@ -40,4 +40,7 @@ jobs:
     - name: Run Tests with Memory Dump on Failure
       run: ./mvnw -B verify -DargLine="-XX:+HeapDumpOnOutOfMemoryError"
 
+    - name: Run Tests with G1 Garbage Collector
+      run: ./mvnw -B verify -DargLine="-XX:+UseG1GC"
+
 
