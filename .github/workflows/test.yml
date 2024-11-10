@@ -36,3 +36,7 @@ jobs:
         else
           echo "New coverage: $coverage%. Coverage is improved!"
         fi
+
+        - name: Run Tests with Memory Dump on Failure
+        run: ./mvnw -B verify -DargLine="-XX:+HeapDumpOnOutOfMemoryError"
+  
