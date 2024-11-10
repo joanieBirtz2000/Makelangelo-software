@@ -38,13 +38,29 @@ jobs:
         fi
       
     - name: Run Tests with Memory Dump on Failure
-      run: ./mvnw -B verify -DargLine="-XX:+HeapDumpOnOutOfMemoryError"
+      run: |
+        echo "Starting tests with flag: -XX:+HeapDumpOnOutOfMemoryError"
+        echo "If memory acts up, we've got a little trip to the dump (memory dump) planned!"
+        ./mvnw -B verify -DargLine="-XX:+HeapDumpOnOutOfMemoryError"
+        echo "Tests completed! Thankfully, we didn t need to take out the big guns."
 
     - name: Run Tests with Optimized Garbage Collection (G1)
-      run: ./mvnw -B verify -DargLine="-XX:+UseG1GC"
+      run: |
+        echo "Starting tests with flag: -XX:+UseG1GC"
+        echo "The G1 Garbage Collector is on duty, taking care of all those digital scraps."
+        ./mvnw -B verify -DargLine="-XX:+UseG1GC"
+        echo "Tests completed! Thanks to G1 for keeping things nice and tidy."
 
     - name: Run Tests with Custom Stack Size
-      run: ./mvnw -B verify -DargLine="-Xss512k"
+      run: |
+        echo "Starting tests with a custom stack size: -Xss512k"
+        echo "We're limiting the stack space a bit... let's hope the code isn t too stack-hungry!"
+        ./mvnw -B verify -DargLine="-Xss512k"
+        echo "Tests completed successfully, and the stack held up just fine!"
+
+
+
+    
 
 
 
