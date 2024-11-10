@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rapport des Flags de l'Action GitHub</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <div class="container">
+        
+    <h1>Rapport des Flags de l'Action GitHub - IFT3913</h1>
+    <p>Date : <strong>2024-10-08</strong></p>
+    <p>Auteurs: <strong>Joanie Birtz (20244554) & Janic Fournel (20201900)</strong></p>
+    <p>Cette page documente les flags ajoutés à l'Action GitHub pour les tests. Chaque flag est décrit avec son objectif, sa motivation, et son impact attendu sur la qualité, la performance, et l'observabilité.</p>
+
+    <div class="flag">
+        <h2>Nom : Run Tests with Memory Dump on Failure</h2>
+        <p><strong>Flag :</strong> -XX:+HeapDumpOnOutOfMemoryError</p>
+        <p><strong>Motivation :</strong> Ce flag est activé pour améliorer l'observabilité. En cas de problème de mémoire (<code>OutOfMemoryError</code>), il permet de générer un dump de mémoire qui aide les développeurs à diagnostiquer les causes des fuites de mémoire ou des consommations excessives. Cela contribue à la stabilité en facilitant l’identification des problèmes de mémoire.</p>
+    </div>
+
+    <div class="flag">
+        <h2>Nom : Run Tests with Optimized Garbage Collection</h2>
+        <p><strong>Flag :</strong> -XX:+UseG1GC</p>
+        <p><strong>Motivation :</strong> Le choix du collecteur de déchets G1 (Garbage-First) vise à optimiser les performances de l'application. Ce collecteur est conçu pour réduire les pauses et améliorer le temps de réponse, ce qui est particulièrement utile pour les applications sensibles aux performances. Cela contribue à maintenir la réactivité de l’application.</p>
+    </div>
+
+    <div class="flag">
+        <h2>Nom : Run Tests with Custom Stack Size</h2>
+        <p><strong>Flag :</strong> -Xss512k</p>
+        <p><strong>Motivation :</strong> La taille de pile personnalisée de 512 Ko a été choisie pour identifier les problèmes liés à la récursivité excessive ou aux débordements de pile dans des environnements à mémoire limitée. Ce test aide à garantir que l'application peut fonctionner efficacement avec une utilisation optimale de la pile, contribuant ainsi à la robustesse du code.</p>
+    </div>
+    </div>
+</body>
+</html>
