@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rapport des Flags de l'Action GitHub</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <div class="container">
+        
+    <h1>Rapport des Flags de l'Action GitHub - IFT3913</h1>
+    <p>Date : <strong>2024-10-08</strong></p>
+    <p>Auteurs: <strong>Joanie Birtz (20244554) & Janic Fournel (20201900)</strong></p>
+    <p>Cette page documente les flags ajoutés à l'Action GitHub pour les tests. Chaque flag est décrit avec son objectif, sa motivation, et son impact attendu sur la qualité, la performance, et l'observabilité.</p>
+    <p>Pour permettre l'exécution des cinq flags dans la Github action, nous n'avons pas changé le code d'origine, nous avons seulement ajoutés des logs et des <em>run</em> pour chaque flag. Nous avons ajoutés des logs humoristiques avant et après l'exécution des flags pour mettre un peu d'humour dans notre code. Nous avons aussi ajoutés la couverture pour chaque flag.</p>
+    <p><a 
+        href="./.github/workflows/test.yml">Lien fichier test.yml</a>
+    La ligne pour le début de chaque flag est indiquée avec la description.</p>
+   
+    <div class="flag">
+        <h2>Nom : Run Tests with Memory Dump on Failure</h2>
+        <p><strong>Flag :</strong> -XX:+HeapDumpOnOutOfMemoryError</p>
+        <p><strong>Motivation :</strong> Ce flag est activé pour améliorer l'observabilité. En cas de problème de mémoire (<code>OutOfMemoryError</code>), il permet de générer un dump de mémoire qui aide les développeurs à diagnostiquer les causes des fuites de mémoire ou des consommations excessives. Cela contribue à la stabilité en facilitant l’identification des problèmes de mémoire.</p>
+        <p><strong>Ligne:</strong> 40</p>
+    </div>
+
+    <div class="flag">
+        <h2>Nom : Run Tests with Optimized Garbage Collection</h2>
+        <p><strong>Flag :</strong> -XX:+UseG1GC</p>
+        <p><strong>Motivation :</strong> Le choix du collecteur de déchets G1 (Garbage-First) vise à optimiser les performances de l'application. Ce collecteur est conçu pour réduire les pauses et améliorer le temps de réponse, ce qui est particulièrement utile pour les applications sensibles aux performances. Cela contribue à maintenir la réactivité de l’application.</p>
+        <p><strong>Ligne:</strong> 49</p>
+    </div>
+
+    <div class="flag">
+        <h2>Nom : Run Tests with Custom Stack Size</h2>
+        <p><strong>Flag :</strong> -Xss512k</p>
+        <p><strong>Motivation :</strong> La taille de pile personnalisée de 512 Ko a été choisie pour identifier les problèmes liés à la récursivité excessive ou aux débordements de pile dans des environnements à mémoire limitée. Ce test aide à garantir que l'application peut fonctionner efficacement avec une utilisation optimale de la pile, contribuant ainsi à la robustesse du code.</p>
+        <p><strong>Ligne:</strong> 58</p>
+    </div>
+
+    <div class="flag">
+        <h2>Nom : Run Tests with Print Warnings</h2>
+        <p><strong>Flag :</strong> -XX:+PrintWarnings</p>
+        <p><strong>Motivation :</strong> Lorsque ce flag est activé, il affiche des avertissements concernant des problèmes de configuration ou dans l'exécution de l'application. Ceci permet de voir des problèmes potentiels tôt et les régler rapidement ce qui améliore l'observabilité et la qualité de l'application.</p>
+        <p><strong>Ligne:</strong> 67</p>
+    </div>
+
+    <div class="flag">
+        <h2>Nom : Run Tests with Tiered Compilation</h2>
+        <p><strong>Flag :</strong> -XX:+TieredCompilation</p>
+        <p><strong>Motivation :</strong> Ce flag est activé pour optimiser la compilation et améliorer la performance de l'application. Il permet une exécution initiale rapide pour démarrer l'application, suivie d'une optimisation progressive des parties critiques du code. Cela pourra améliorer la réactivité de l'interface graphique et la performance générale de l'application en réduisant les délais de démarrage et en optimisant le code au fil du temps.</p>
+        <p><strong>Ligne:</strong> 76</p>
+    </div>
+    </div>
+</body>
+</html>
